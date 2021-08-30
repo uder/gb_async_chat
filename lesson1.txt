@@ -1,0 +1,21 @@
+#Задание 1
+>>> str1 = 'разработка'
+>>> str2 = 'сокет'
+>>> str3 = 'декоратор'
+>>> print(type(str1), str1)
+<class 'str'> разработка
+>>> print(type(str2), str2)
+<class 'str'> сокет
+>>> print(type(str3), str3)
+<class 'str'> декоратор
+
+>>> byte1 = str1.encode('utf-8')
+>>> byte2 = str2.encode('utf-8')
+>>> byte3 = str3.encode('utf-8')
+>>> print(type(byte1), byte1)
+<class 'bytes'> b'\xd1\x80\xd0\xb0\xd0\xb7\xd1\x80\xd0\xb0\xd0\xb1\xd0\xbe\xd1\x82\xd0\xba\xd0\xb0'
+>>> print(type(byte2), byte2)
+<class 'bytes'> b'\xd1\x81\xd0\xbe\xd0\xba\xd0\xb5\xd1\x82'
+>>> print(type(byte3), byte3)
+<class 'bytes'> b'\xd0\xb4\xd0\xb5\xd0\xba\xd0\xbe\xd1\x80\xd0\xb0\xd1\x82\xd0\xbe\xd1\x80'
+
