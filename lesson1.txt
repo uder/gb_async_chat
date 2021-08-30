@@ -1,0 +1,123 @@
+#Задание 1
+>>> str1 = 'разработка'
+>>> str2 = 'сокет'
+>>> str3 = 'декоратор'
+>>> print(type(str1), str1)
+<class 'str'> разработка
+>>> print(type(str2), str2)
+<class 'str'> сокет
+>>> print(type(str3), str3)
+<class 'str'> декоратор
+
+>>> byte1 = str1.encode('utf-8')
+>>> byte2 = str2.encode('utf-8')
+>>> byte3 = str3.encode('utf-8')
+>>> print(type(byte1), byte1)
+<class 'bytes'> b'\xd1\x80\xd0\xb0\xd0\xb7\xd1\x80\xd0\xb0\xd0\xb1\xd0\xbe\xd1\x82\xd0\xba\xd0\xb0'
+>>> print(type(byte2), byte2)
+<class 'bytes'> b'\xd1\x81\xd0\xbe\xd0\xba\xd0\xb5\xd1\x82'
+>>> print(type(byte3), byte3)
+<class 'bytes'> b'\xd0\xb4\xd0\xb5\xd0\xba\xd0\xbe\xd1\x80\xd0\xb0\xd1\x82\xd0\xbe\xd1\x80'
+
+
+#Задание 2
+>>> byte1 = b'class'
+>>> byte2 = b'function'
+>>> byte3 = b'method'
+>>> print(type(byte1), byte1, len(byte1))
+<class 'bytes'> b'class' 5
+>>> print(type(byte2), byte2, len(byte2))
+<class 'bytes'> b'function' 8
+>>> print(type(byte3), byte3, len(byte3))
+<class 'bytes'> b'method' 6
+
+
+#Задание 3
+>>> byte1 = b'attribute'
+>>> byte2 = b'класс'
+  File "<stdin>", line 1
+SyntaxError: bytes can only contain ASCII literal characters.
+>>> byte3 = b'функция'
+  File "<stdin>", line 1
+SyntaxError: bytes can only contain ASCII literal characters.
+>>> byte4 = b'type'
+
+В байтовом виде невозможно записать слова "класс" и "функция". Они содержат
+не-ASCII символы
+
+
+#Задание 4
+>>> str_list = ['разработка', 'администрирование', 'protocol', 'standard']
+>>> for s in str_list:
+...     byte_s = s.encode('utf-8')
+...     str_s = byte_s.decode('utf-8')
+...     print(s, byte_s, str_s)
+...
+разработка
+b'\xd1\x80\xd0\xb0\xd0\xb7\xd1\x80\xd0\xb0\xd0\xb1\xd0\xbe\xd1\x82\xd0\xba\xd0\xb0'
+разработка
+администрирование
+b'\xd0\xb0\xd0\xb4\xd0\xbc\xd0\xb8\xd0\xbd\xd0\xb8\xd1\x81\xd1\x82\xd1\x80\xd0\xb8\xd1\x80\xd0\xbe\xd0\xb2\xd0\xb0\xd0\xbd\xd0\xb8\xd0\xb5'
+администрирование
+protocol b'protocol' protocol
+standard b'standard' standard
+
+
+#Задание 5
+PING yandex.ru (77.88.55.77) 56(84) bytes of data.
+
+64 bytes from yandex.ru (77.88.55.77): icmp_seq=1 ttl=242 time=35.7 ms
+
+64 bytes from yandex.ru (77.88.55.77): icmp_seq=2 ttl=242 time=35.8 ms
+
+64 bytes from yandex.ru (77.88.55.77): icmp_seq=3 ttl=242 time=35.8 ms
+
+
+
+--- yandex.ru ping statistics ---
+
+3 packets transmitted, 3 received, 0% packet loss, time 2004ms
+
+rtt min/avg/max/mdev = 35.729/35.766/35.816/0.036 ms
+
+PING youtube.com (74.125.133.190) 56(84) bytes of data.
+
+64 bytes from wo-in-f190.1e100.net (74.125.133.190): icmp_seq=1 ttl=109
+time=31.7 ms
+
+64 bytes from wo-in-f190.1e100.net (74.125.133.190): icmp_seq=2 ttl=109
+time=31.7 ms
+
+64 bytes from wo-in-f190.1e100.net (74.125.133.190): icmp_seq=3 ttl=109
+time=31.5 ms
+
+
+
+--- youtube.com ping statistics ---
+
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+
+rtt min/avg/max/mdev = 31.517/31.629/31.686/0.079 ms
+
+
+#Задание 6
+Encoding = utf-8
+сетевое программирование
+
+сокет
+
+декоратор
+
+---
+Encoding = cp1251
+СЃРµС‚РµРІРѕРµ РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ
+
+СЃРѕРєРµС‚
+
+РґРµРєРѕСЂР°С‚РѕСЂ
+
+---
+Encoding = utf-16
+ERROR: UTF-16 stream does not start with BOM
+---
+
