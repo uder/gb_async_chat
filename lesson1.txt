@@ -19,3 +19,14 @@
 >>> print(type(byte3), byte3)
 <class 'bytes'> b'\xd0\xb4\xd0\xb5\xd0\xba\xd0\xbe\xd1\x80\xd0\xb0\xd1\x82\xd0\xbe\xd1\x80'
 
+
+#Задание 2
+>>> byte1 = b'class'
+>>> byte2 = b'function'
+>>> byte3 = b'method'
+>>> print(type(byte1), byte1, len(byte1))
+<class 'bytes'> b'class' 5
+>>> print(type(byte2), byte2, len(byte2))
+<class 'bytes'> b'function' 8
+>>> print(type(byte3), byte3, len(byte3))
+<class 'bytes'> b'method' 6
