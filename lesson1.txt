@@ -30,3 +30,18 @@
 <class 'bytes'> b'function' 8
 >>> print(type(byte3), byte3, len(byte3))
 <class 'bytes'> b'method' 6
+
+
+#Задание 3
+>>> byte1 = b'attribute'
+>>> byte2 = b'класс'
+  File "<stdin>", line 1
+SyntaxError: bytes can only contain ASCII literal characters.
+>>> byte3 = b'функция'
+  File "<stdin>", line 1
+SyntaxError: bytes can only contain ASCII literal characters.
+>>> byte4 = b'type'
+
+В байтовом виде невозможно записать слова "класс" и "функция". Они содержат
+не-ASCII символы
+
