@@ -45,3 +45,19 @@ SyntaxError: bytes can only contain ASCII literal characters.
 В байтовом виде невозможно записать слова "класс" и "функция". Они содержат
 не-ASCII символы
 
+
+#Задание 4
+>>> str_list = ['разработка', 'администрирование', 'protocol', 'standard']
+>>> for s in str_list:
+...     byte_s = s.encode('utf-8')
+...     str_s = byte_s.decode('utf-8')
+...     print(s, byte_s, str_s)
+...
+разработка
+b'\xd1\x80\xd0\xb0\xd0\xb7\xd1\x80\xd0\xb0\xd0\xb1\xd0\xbe\xd1\x82\xd0\xba\xd0\xb0'
+разработка
+администрирование
+b'\xd0\xb0\xd0\xb4\xd0\xbc\xd0\xb8\xd0\xbd\xd0\xb8\xd1\x81\xd1\x82\xd1\x80\xd0\xb8\xd1\x80\xd0\xbe\xd0\xb2\xd0\xb0\xd0\xbd\xd0\xb8\xd0\xb5'
+администрирование
+protocol b'protocol' protocol
+standard b'standard' standard
