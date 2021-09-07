@@ -3,3 +3,4 @@ venv/
 __pycache__/
 
 lesson2/main_data*
+lesson2/orders.json
