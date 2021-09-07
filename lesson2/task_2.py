@@ -8,7 +8,7 @@ def write_order_to_json(order_dict):
 
     json_dict.get('orders').append(order_dict)
 
-    with open('orders.json', 'w') as f:
+    with open('orders.json', 'w', encoding='utf-8') as f:
         json.dump(json_dict, f, indent=4)
 
 
