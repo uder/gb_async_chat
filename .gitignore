@@ -1,0 +1,7 @@
+venv/
+.idea/
+__pycache__/
+
+lesson2/main_data*
+lesson2/orders.json
+lesson2/file.yaml
