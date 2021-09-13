@@ -1,6 +1,6 @@
 import json
 import logging
-from socket import socket, AF_INET, SOCK_STREAM
+from socket import socket, error, AF_INET, SOCK_STREAM
 
 from jimmy.messages.message import Message
 from jimmy.messages.responses import Response
@@ -27,13 +27,17 @@ class Client(LoggerMixin):
         self.message_type = kwargs.get('message_type')
 
     def start(self):
-        self.socket.connect((self.server_addr, self.server_port))
-        # msg = self.socket.recv(1024)
-        self._send_message(self.message_type, account_name=self.account_name)
-        data = self.socket.recv(10240)
-        self._process_response(data)
+        try:
+            self.socket.connect((self.server_addr, self.server_port))
+        except error:
+            self.logger.error(f'Cant establish connection to {self.server_addr}:{self.server_port}')
+        else:
+            # msg = self.socket.recv(1024)
+            self._send_message(self.message_type, account_name=self.account_name)
+            data = self.socket.recv(10240)
+            self._process_response(data)
 
-        self.socket.close()
+            self.socket.close()
 
     def _send_message(self, message_type, **body):
         if message_type in Message.message_types:

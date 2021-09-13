@@ -1,7 +1,7 @@
 import json
 import logging
-from socket import socket, AF_INET, SOCK_STREAM
-from datetime import datetime
+from socket import socket, error, AF_INET, SOCK_STREAM
+# from datetime import datetime
 
 from jimmy.messages.message import Message
 from jimmy.messages.responses import Response
@@ -25,22 +25,31 @@ class Server(LoggerMixin):
         self.logger = self._get_logger(self._logname, self.logdir, self.logfile, self.loglevel)
         
     def start(self):
+        self.logger.info(f'Listening on {self.addr}:{self.port}')
         self.socket.bind((self.addr, self.port))
         self.socket.listen(self.max_client)
+        self.socket.settimeout(1)
+        # self.socket.setblocking(False)
         self._run()
 
     def _run(self):
         while self._running:
-            client, addr = self.socket.accept()
-            now = datetime.now().isoformat()
-            # print('client accepted', now, str(addr))
-            self.logger.info(f'client accepted {str(addr)}')
-            data = client.recv(102400)
-            if data:
-                response = self._process_message(data)
-                client.send(response.get_data())
-            client.close()
-        client.close()
+            try:
+                client, addr = self.socket.accept()
+            except KeyboardInterrupt:
+                self.logger.error('Ctrl+C is pressed. Server is stopped')
+                self.socket.close()
+                break
+            except error:
+                continue
+            else:
+                self.logger.info(f'client accepted {str(addr)}')
+                # client.setblocking(True)
+                data = client.recv(102400)
+                if data:
+                    response = self._process_message(data)
+                    client.send(response.get_data())
+                client.close()
 
     def _process_message(self, data: bytes) -> Response:
         message_dict = json.loads(data.decode('utf-8'))
@@ -53,6 +62,7 @@ class Server(LoggerMixin):
         response = self._get_response(200)
         if message_type == 'quit':
             self._running = False
+            self.logger.warning(f'Get a "quit" message shutting down')
 
         return response
 
