@@ -9,6 +9,7 @@ def _parse_args():
     parser.add_argument("-a", "--addr", help="Server's address", dest='server_addr', default='localhost', type=str)
     parser.add_argument("-p", "--port", help="Server's port", dest='server_port', default=7777, type=int)
     parser.add_argument("-u", "--username", help="Your username", dest='account_name', default='test_user', type=str)
+    parser.add_argument("-l", "--logdir", help="Client's logging dir", dest='logdir', default='./log', type=str)
 
     parser.add_argument("-t", "--type", help="TEST Messge action", dest='message_type', default='presence', type=str)
 

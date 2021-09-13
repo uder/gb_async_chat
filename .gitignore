@@ -1,6 +1,7 @@
 .idea/
 __pycache__/
 venv/
+log/
 
 lesson2/file.yaml
 lesson2/main_data*
