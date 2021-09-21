@@ -1,11 +1,11 @@
 import json
 import logging
 from socket import socket, error, AF_INET, SOCK_STREAM
-# from datetime import datetime
 
 from jimmy.messages.message import Message
 from jimmy.messages.responses import Response
 from jimmy.include.logger import LoggerMixin
+from jimmy.include.decorators import log
 
 
 class Server(LoggerMixin):
@@ -23,7 +23,7 @@ class Server(LoggerMixin):
         self.logfile = kwargs.get('logfile', 'server.log')
         self.loglevel = kwargs.get('loglevel', logging.INFO)
         self.logger = self._get_logger(self._logname, self.logdir, self.logfile, self.loglevel)
-        
+
     def start(self):
         self.logger.info(f'Listening on {self.addr}:{self.port}')
         self.socket.bind((self.addr, self.port))
@@ -51,6 +51,7 @@ class Server(LoggerMixin):
                     client.send(response.get_data())
                 client.close()
 
+    @log
     def _process_message(self, data: bytes) -> Response:
         message_dict = json.loads(data.decode('utf-8'))
         message_type = message_dict.get('action')

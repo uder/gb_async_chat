@@ -5,6 +5,7 @@ from socket import socket, error, AF_INET, SOCK_STREAM
 from jimmy.messages.message import Message
 from jimmy.messages.responses import Response
 from jimmy.include.logger import LoggerMixin
+from jimmy.include.decorators import log
 
 
 class Client(LoggerMixin):
@@ -50,6 +51,7 @@ class Client(LoggerMixin):
             self.logger.warning(f'Unknown message type: {message_type}')
             self.logger.warning(Message.message_types)
 
+    @log
     def _process_response(self, data):
         response_dict = json.loads(data.decode('utf-8'))
         code = response_dict.get('response')
