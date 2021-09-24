@@ -37,14 +37,3 @@ class Response200(Response):
         result_dict.update({'alert': self._alert})
 
         return json.dumps(result_dict)
-
-class Response299(Response):
-    _code = 299
-    _alert = "Пустое сообщение. Только для тестов"
-
-    def _get_json(self):
-        result_dict = {}
-        result_dict.update({'response': self._code})
-        result_dict.update({'alert': self._alert})
-
-        return json.dumps(result_dict)
