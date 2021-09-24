@@ -13,7 +13,7 @@ class LoggerMixin:
         return logger
 
 
-class HandlerBuilder(metaclass=abc.ABCMeta):
+class HandlerBuilder(abc.ABC):
     @abc.abstractmethod
     def create(self, *args, **kwargs) -> logging.Handler:
         pass
