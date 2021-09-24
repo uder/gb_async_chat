@@ -1,5 +1,5 @@
 import argparse
-from jimmy.client import Client, SenderClient, ReceiverClient
+from jimmy.client import Client, SenderClient, ReceiverClient, ThreadingClient
 
 
 def _parse_args():
@@ -23,12 +23,14 @@ def _parse_args():
 
 def main():
     args = _parse_args()
+    client = ThreadingClient(**args)
+
     if args.get('send'):
         client = SenderClient(**args)
     elif args.get('receive'):
         client = ReceiverClient(**args)
-    else:
-        raise Exception("Client type (send/receive) id not defined")
+    # else:
+    #     raise Exception("Client type (send/receive) id not defined")
     # client = Client(**args)
     client.start()
 

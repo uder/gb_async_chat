@@ -5,12 +5,13 @@ from select import select
 from datetime import datetime
 
 from jimmy.messages.message import Message
-from jimmy.messages.responses import Response
+from jimmy.messages.responses import Response, ResponseFactory
 from jimmy.include.logger import LoggerMixin
+from jimmy.include.mixins.process_data import ProcessDictMixin
 from jimmy.include.decorators import log
 
 
-class Server(LoggerMixin):
+class Server(LoggerMixin, ProcessDictMixin):
     _logname = 'server'
 
     def __init__(self, **kwargs):
@@ -36,11 +37,14 @@ class Server(LoggerMixin):
 
     def _run(self):
         response = None
+        buffered_message = ResponseFactory.create_by_code(299)
+        # counter = 0
         while self._running:
+            # counter += 1
+            # print(counter)
             wait = 3
             client_list = []
             elist = []
-
             try:
                 client, addr = self.socket.accept()
             except KeyboardInterrupt:
@@ -55,26 +59,31 @@ class Server(LoggerMixin):
             finally:
                 try:
                     rlist, wlist, elist = select(client_list, client_list, elist, wait)
+                    # print(rlist, wlist)
                 except OSError as err:
-                    print(err)
+                    # print(err)
                     pass
                 else:
                     for rclient in rlist:
                         try:
                             rclient.setblocking(True)
                             data = rclient.recv(102400)
+                            # print(data)
                         except:
                             self.logger.error(f'Cant read from {rclient}')
                         else:
                             if data:
+                                print(data.decode('utf-8'))
                                 response = self._process_message(data)
+                                data_dict = json.loads(data.decode('utf-8'))
+                                buffered_message = self._process_data(data_dict)
                             rclient.close()
                     for wclient in wlist:
                         try:
-                            if response:
+                            if buffered_message:
                                 wclient.setblocking(True)
-                                wclient.send(response.get_data())
-                                response = None
+                                wclient.send(buffered_message.get_data())
+                                buffered_message = None
                             wclient.close()
                         except:
                             self.logger.error(f'Cant write to {wclient}')
