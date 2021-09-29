@@ -2,6 +2,18 @@ from abc import abstractmethod
 
 from jimmy.include.message_mapper import MessageMapper
 
+class MessageFactory:
+    @staticmethod
+    def create_message(message_dict: dict) -> 'Message':
+        if message_dict.get('action') in Message.message_types:
+            message_type = Message.message_types.get(message_dict.get('action'))
+        else:
+            message_type = Message.message_types.get('not_existent_action')
+
+        message = message_type(**message_dict)
+
+        return message
+
 
 class Message(metaclass=MessageMapper):
     message_types = {}

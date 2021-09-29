@@ -59,3 +59,11 @@ class Client(LoggerMixin):
         response = ResponseType()
         self.logger.info(f'Responce: {str(response)}')
         return response
+
+    def _get_message_body(self, data):
+        response_dict = json.loads(data.decode('utf-8'))
+        return response_dict.get('message')
+
+    def _get_from(self, data):
+        response_dict = json.loads(data.decode('utf-8'))
+        return response_dict.get('from')

@@ -4,6 +4,27 @@ from abc import abstractmethod
 from jimmy.include.message_mapper import MessageMapper
 
 
+class ResponseFactory:
+    @staticmethod
+    def create_response(response_dict: dict) -> 'Response':
+        if response_dict.get('response') in Response.response_types:
+            response_type = Response.response_types.get(response_dict.get('response'))
+        else:
+            response_type = Response.response_types.get(299)
+
+        response = response_type()
+
+        return response
+    @staticmethod
+    def create_by_code(code: int) -> 'Response':
+        if code in Response.response_types:
+            response_type = Response.response_types.get(code)
+        else:
+            response_type = Response.response_types.get(299)
+
+        response = response_type()
+        return response
+
 class Response(metaclass=MessageMapper):
     response_types = {}
     _code = 0
@@ -48,3 +69,4 @@ class Response299(Response):
         result_dict.update({'alert': self._alert})
 
         return json.dumps(result_dict)
+
