@@ -1,9 +1,11 @@
 import subprocess
 from ipaddress import ip_address
 from socket import gethostbyname
+from itertools import zip_longest
+from tabulate import tabulate
 
 
-def host_ping(host_list: list):
+def host_ping(host_list: list, printout=True):
     result_dict = {}
     for host in host_list:
         try:
@@ -31,25 +33,49 @@ def host_ping(host_list: list):
                 host_accessible = True
         result_dict.update({host: host_accessible})
 
-    for host, host_accessible in result_dict.items():
-        if host_accessible:
-            print(f'Узел доступен: {host}')
-        else:
-            print(f'Узел недоступен: {host}')
+    if printout:
+        for host, host_accessible in result_dict.items():
+            if host_accessible:
+                print(f'Узел доступен: {host}')
+            else:
+                print(f'Узел недоступен: {host}')
 
     return result_dict
 
-host_ping(['google.ru', '8.8.8.8', 'notexistent.not', '55.55.55.55'])
+
+# host_ping(['google.ru', '8.8.8.8', 'notexistent.not', '55.55.55.55'])
 
 from ipaddress import ip_network
 
 
-def host_range_ping(network: str):
+def host_range_ping(network: str, prtintout=True):
     try:
         ipv4_network = ip_network(network)
     except:
         raise Exception(f"Not valid ip network {network}")
 
-    host_ping(list(ipv4_network.hosts()))
+    result_dict = host_ping(list(ipv4_network.hosts()), printout=prtintout)
+    return result_dict
 
-host_range_ping('192.168.2.0/28')
+
+# host_range_ping('192.168.2.0/28')
+
+def host_range_ping_tab(network: str):
+    result_dict = host_range_ping(network, False)
+    true_list = []
+    false_list = []
+    for host, accessible in result_dict.items():
+        if accessible:
+            true_list.append(host)
+        else:
+            false_list.append(host)
+
+    tab_list = []
+    for i in zip_longest(true_list, false_list):
+        tab_list.append(i)
+
+    headers = ['Reachable', 'Unreachable']
+    print(tabulate(tab_list, headers, tablefmt="simple"))
+
+
+host_range_ping_tab('192.168.2.0/28')
