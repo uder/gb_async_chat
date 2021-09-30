@@ -18,7 +18,12 @@ def host_ping(host_list: list):
 
         args = ['ping', '-n', '3', str(ipv4)]
         proc = subprocess.Popen(args, stdout=subprocess.PIPE)
-        proc.wait(timeout=30)
+        try:
+            proc.wait(timeout=5)
+        except:
+            result_dict.update({host: False})
+            continue
+
         host_accessible = False
         success_line = "Пакетов: отправлено = 3, получено = 3, потеряно = 0"
         for line in proc.stdout:
@@ -35,3 +40,16 @@ def host_ping(host_list: list):
     return result_dict
 
 host_ping(['google.ru', '8.8.8.8', 'notexistent.not', '55.55.55.55'])
+
+from ipaddress import ip_network
+
+
+def host_range_ping(network: str):
+    try:
+        ipv4_network = ip_network(network)
+    except:
+        raise Exception(f"Not valid ip network {network}")
+
+    host_ping(list(ipv4_network.hosts()))
+
+host_range_ping('192.168.2.0/28')
