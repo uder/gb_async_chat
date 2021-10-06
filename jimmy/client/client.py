@@ -6,13 +6,17 @@ from jimmy.messages.message import Message
 from jimmy.messages.responses import Response
 from jimmy.include.logger import LoggerMixin
 from jimmy.include.decorators import log
+from jimmy.include.verifier.client import ClientVerifyMeta
+from jimmy.include.descriptors.socket import SocketDescriptorClient
 
 
-class Client(LoggerMixin):
+class Client(LoggerMixin, metaclass=ClientVerifyMeta):
     _logname = 'client'
-
+    socket = SocketDescriptorClient('socket')
     def __init__(self, **kwargs):
         self.socket = socket(AF_INET, SOCK_STREAM)
+
+        # self.socket = (AF_INET, SOCK_STREAM)
 
         self.ANONYMOUS = 'anonymous'
         self.server_addr = kwargs.get('server_addr')

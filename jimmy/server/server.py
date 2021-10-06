@@ -9,10 +9,11 @@ from jimmy.messages.responses import Response, ResponseFactory
 from jimmy.include.logger import LoggerMixin
 from jimmy.include.mixins.process_data import ProcessDictMixin
 from jimmy.include.decorators import log
-
+from jimmy.include.descriptors.socket import SocketDescriptorServer
 
 class Server(LoggerMixin, ProcessDictMixin):
     _logname = 'server'
+    socket = SocketDescriptorServer('socket')
 
     def __init__(self, **kwargs):
         self.socket = socket(AF_INET, SOCK_STREAM)
