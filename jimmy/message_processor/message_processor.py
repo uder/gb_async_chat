@@ -1,0 +1,2 @@
+class MessageProcessor:
+    pass

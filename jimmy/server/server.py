@@ -10,6 +10,8 @@ from jimmy.include.logger import LoggerMixin
 from jimmy.include.mixins.process_data import ProcessDictMixin
 from jimmy.include.decorators import log
 from jimmy.include.descriptors.socket import SocketDescriptorServer
+# from db import Session
+from jimmy.message_processor.server_processor import ServerMessageProcessor
 
 class Server(LoggerMixin, ProcessDictMixin):
     _logname = 'server'
@@ -18,6 +20,7 @@ class Server(LoggerMixin, ProcessDictMixin):
     def __init__(self, **kwargs):
         self.socket = socket(AF_INET, SOCK_STREAM)
         self._running = True
+        # self.session = Session()
 
         self.addr = kwargs.get('server_addr')
         self.port = int(kwargs.get('server_port'))
@@ -27,6 +30,7 @@ class Server(LoggerMixin, ProcessDictMixin):
         self.logfile = kwargs.get('logfile', 'server.log')
         self.loglevel = kwargs.get('loglevel', logging.INFO)
         self.logger = self._get_logger(self._logname, self.logdir, self.logfile, self.loglevel)
+        self.message_processor = ServerMessageProcessor(self.logger)
 
     def start(self):
         self.logger.info(f'Listening on {self.addr}:{self.port}')
@@ -98,12 +102,16 @@ class Server(LoggerMixin, ProcessDictMixin):
         ConcreteMessageType = Message.message_types.get(message_type)
         message = ConcreteMessageType(**message_dict)
         # print(message)
-        self.logger.info(str(message))
+        # self.logger.info(str(message))
 
-        response = self._get_response(200)
+
+        # response = self._get_response(200)
+        response = self.message_processor.process_message(message)
         if message_type == 'quit':
             self._running = False
-            self.logger.warning(f'Get a "quit" message shutting down')
+            # self.logger.warning(f'Get a "quit" message shutting down')
+
+        # if message_type == 'add_contact':
 
         return response
 

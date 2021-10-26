@@ -37,3 +37,6 @@ class Message(metaclass=MessageMapper):
 
     def get_data(self):
         return self.json_encoded
+
+    def get_type(self):
+        return self._type

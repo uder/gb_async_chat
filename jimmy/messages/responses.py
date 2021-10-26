@@ -59,6 +59,23 @@ class Response200(Response):
 
         return json.dumps(result_dict)
 
+
+class Response202(Response):
+    _code = 202
+    _alert = "Список контактов"
+
+    def __init__(self, contact_list: list):
+        self.contact_list = contact_list
+        super().__init__()
+
+    def _get_json(self):
+        result_dict = {}
+        result_dict.update({'response': self._code})
+        result_dict.update({'alert': self.contact_list})
+
+        return json.dumps(result_dict)
+
+
 class Response299(Response):
     _code = 299
     _alert = "Пустое сообщение. Только для тестов"
