@@ -87,3 +87,13 @@ class Response299(Response):
 
         return json.dumps(result_dict)
 
+class Response402(Response):
+    _code = 402
+    _alert = "This could be 'wrong password' or 'no account with that name'"
+
+    def _get_json(self):
+        result_dict = {}
+        result_dict.update({'response': self._code})
+        result_dict.update({'alert': self._alert})
+
+        return json.dumps(result_dict)

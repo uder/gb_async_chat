@@ -46,3 +46,19 @@ class ContactList(Base):
 
     def __repr__(self):
         return "<History('%s','%s')>" % (self.owner_id, self.user_id)
+
+
+сlass UserPassword(Base):
+    __tablename__ = 'user_password'
+    id = Column(Integer, primary_key=True)
+    user_name = Column(String)
+    hash = Column(String)
+    salt = Column(String)
+
+    def __init__(self, user_name, hash, salt):
+        self.user_id = user_name
+        self.hash = hash
+        self.salt = salt
+
+    def __repr__(self):
+        return "<Password('%s','%s', '%s')>" % (self.user_name, self.hash, self.salt)

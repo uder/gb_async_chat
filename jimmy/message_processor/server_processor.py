@@ -5,7 +5,7 @@ from jimmy.messages.responses import Response
 # from jimmy.include.mixins.process_data import ProcessDictMixin
 from .message_processor import MessageProcessor
 from db import Session
-from db.schema import Client, ClientHistory, ContactList
+from db.schema import Client, ClientHistory, ContactList, UserPassword
 
 
 class ServerMessageProcessor(MessageProcessor):
@@ -14,6 +14,7 @@ class ServerMessageProcessor(MessageProcessor):
         'add_contact': ProcessAddContact,
         'del_contact': ProcessDelContact,
         'get_contacts': ProcessGetContacts,
+        'authenticate':
 
     }
 
@@ -98,3 +99,15 @@ class ProcessGetContacts(Process):
         response = self._get_response_object(202, payload=contacts)
         return response
 
+class ProcessAuthenticate(Process):
+    def get_response(self) -> Response:
+        user_name = self.message.body.get('user').get('account_name')
+        hash = self.message.body.get('user').get('password')
+        contacts = session.query(UserPassword).filter_by(user_name=user_name)
+        db_hash = contacts.get('hash')
+        if hash == db_hash:
+            code = 200
+        else:
+            code = 402
+
+        return self._get_response_object(code)
