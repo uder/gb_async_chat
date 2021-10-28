@@ -1,6 +1,6 @@
 import sqlalchemy
 
-from schema import Base, ClientTable, ClientHistoryTable, ContactListTable
+from schema import Base
 
 
 engine = sqlalchemy.create_engine('sqlite://:memory:', echo=True)

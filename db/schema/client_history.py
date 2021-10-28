@@ -16,4 +16,3 @@ class ClientHistoryTable(Base):
 
     def __repr__(self):
         return "<History('%s','%s')>" % (self.login, self.ip)
-

@@ -8,8 +8,11 @@ class SenderClient(Client):
         try:
             self.socket.connect((self.server_addr, self.server_port))
         except Exception as err:
-            self.logger.error(f'Cant establish connection to {self.server_addr}:{self.server_port}')
+            self.logger.error(
+                f'Cant establish connection to {self.server_addr}:{self.server_port}')
         else:
-            self._send_message(self.message_type, account_name=self.account_name)
+            self._send_message(
+                self.message_type,
+                account_name=self.account_name)
 
             self.socket.close()

@@ -6,9 +6,15 @@ from logging.handlers import RotatingFileHandler, TimedRotatingFileHandler
 
 class LoggerMixin:
     @staticmethod
-    def _get_logger(logname: str, logdir: str, logfile: str, loglevel: str, **kwargs) -> logging.Logger:
+    def _get_logger(
+            logname: str,
+            logdir: str,
+            logfile: str,
+            loglevel: str,
+            **kwargs) -> logging.Logger:
         logger_builder = JimmyLoggerBuilder()
-        logger = logger_builder.create_logger(logname, logdir, logfile, loglevel, **kwargs)
+        logger = logger_builder.create_logger(
+            logname, logdir, logfile, loglevel, **kwargs)
 
         return logger
 
@@ -20,7 +26,8 @@ class HandlerBuilder(abc.ABC):
 
 
 class FileHandlerBuilder(HandlerBuilder):
-    def create(self, logdir: str, logfile: str, **kwargs) -> logging.FileHandler:
+    def create(self, logdir: str, logfile: str,
+               **kwargs) -> logging.FileHandler:
         self._prepare_directory(logdir)
         logpath = os.path.join(logdir, logfile)
         handler = logging.FileHandler(filename=logpath)
@@ -32,19 +39,29 @@ class FileHandlerBuilder(HandlerBuilder):
 
 
 class RotatedFileHandlerBuilder(FileHandlerBuilder):
-    def create(self, logdir: str, logfile: str, max_bytes: int = 1024, **kwargs) -> RotatingFileHandler:
+    def create(
+            self,
+            logdir: str,
+            logfile: str,
+            max_bytes: int = 1024,
+            **kwargs) -> RotatingFileHandler:
         self._prepare_directory(logdir)
         logpath = os.path.join(logdir, logfile)
-        handler = RotatingFileHandler(filename=logpath, maxBytes=max_bytes, backupCount=1)
+        handler = RotatingFileHandler(
+            filename=logpath,
+            maxBytes=max_bytes,
+            backupCount=1)
 
         return handler
 
 
 class TimedRotatingFileHandlerBuilder(FileHandlerBuilder):
-    def create(self, logdir: str, logfile: str, **kwargs) -> TimedRotatingFileHandler:
+    def create(self, logdir: str, logfile: str, **
+               kwargs) -> TimedRotatingFileHandler:
         self._prepare_directory(logdir)
         logpath = os.path.join(logdir, logfile)
-        handler = TimedRotatingFileHandler(logpath, backupCount=1, interval=1, when='h')
+        handler = TimedRotatingFileHandler(
+            logpath, backupCount=1, interval=1, when='h')
 
         return handler
 
@@ -56,7 +73,13 @@ class JimmyLoggerBuilder:
         'timed_file': TimedRotatingFileHandlerBuilder(),
     }
 
-    def create_logger(self, logname: str, logdir: str, logfile: str, loglevel: str, **kwargs) -> logging.Logger:
+    def create_logger(
+            self,
+            logname: str,
+            logdir: str,
+            logfile: str,
+            loglevel: str,
+            **kwargs) -> logging.Logger:
         formatter = self._get_formatter(logname)
         handler = self._get_handler(logname, logdir, logfile, **kwargs)
         handler.setFormatter(formatter)
@@ -70,7 +93,12 @@ class JimmyLoggerBuilder:
         handler_builder = self._handlers.get(handler_type)
         return handler_builder
 
-    def _get_handler(self, logname: str, logdir: str, logfile: str, **kwargs) -> logging.Handler:
+    def _get_handler(
+            self,
+            logname: str,
+            logdir: str,
+            logfile: str,
+            **kwargs) -> logging.Handler:
         handler_type = 'file'
         if logname == 'server':
             handler_type = 'timed_file'

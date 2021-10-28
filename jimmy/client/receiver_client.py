@@ -1,5 +1,5 @@
 from datetime import datetime
-from socket import socket, error, AF_INET, SOCK_STREAM
+from socket import socket, AF_INET, SOCK_STREAM
 
 from .client import Client
 
@@ -36,4 +36,3 @@ class ReceiverClient(Client):
             if response:
                 print(f'{datetime.now()} Response = {response}')
                 self.logger.info(f'Response = {response}')
-

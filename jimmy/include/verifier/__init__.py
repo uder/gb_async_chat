@@ -1,5 +1,5 @@
-import inspect
 import collections
+
 
 class VerifyMeta(type):
     @classmethod

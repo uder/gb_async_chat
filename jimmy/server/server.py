@@ -1,8 +1,7 @@
 import json
 import logging
-from socket import socket, error, AF_INET, SOCK_STREAM
+from socket import socket, AF_INET, SOCK_STREAM
 from select import select
-from datetime import datetime
 
 from jimmy.messages.message import Message
 from jimmy.messages.responses import Response, ResponseFactory
@@ -10,6 +9,7 @@ from jimmy.include.logger import LoggerMixin
 from jimmy.include.mixins.process_data import ProcessDictMixin
 from jimmy.include.decorators import log
 from jimmy.include.descriptors.socket import SocketDescriptorServer
+
 
 class Server(LoggerMixin, ProcessDictMixin):
     _logname = 'server'
@@ -26,7 +26,11 @@ class Server(LoggerMixin, ProcessDictMixin):
         self.logdir = kwargs.get('logdir', './log')
         self.logfile = kwargs.get('logfile', 'server.log')
         self.loglevel = kwargs.get('loglevel', logging.INFO)
-        self.logger = self._get_logger(self._logname, self.logdir, self.logfile, self.loglevel)
+        self.logger = self._get_logger(
+            self._logname,
+            self.logdir,
+            self.logfile,
+            self.loglevel)
 
     def start(self):
         self.logger.info(f'Listening on {self.addr}:{self.port}')
@@ -37,7 +41,6 @@ class Server(LoggerMixin, ProcessDictMixin):
         self._run()
 
     def _run(self):
-        response = None
         buffered_message = ResponseFactory.create_by_code(299)
         # counter = 0
         while self._running:
@@ -59,7 +62,8 @@ class Server(LoggerMixin, ProcessDictMixin):
                 client_list.append(client)
             finally:
                 try:
-                    rlist, wlist, elist = select(client_list, client_list, elist, wait)
+                    rlist, wlist, elist = select(
+                        client_list, client_list, elist, wait)
                     # print(rlist, wlist)
                 except OSError as err:
                     # print(err)
@@ -70,14 +74,15 @@ class Server(LoggerMixin, ProcessDictMixin):
                             rclient.setblocking(True)
                             data = rclient.recv(102400)
                             # print(data)
-                        except:
+                        except BaseException:
                             self.logger.error(f'Cant read from {rclient}')
                         else:
                             if data:
                                 print(data.decode('utf-8'))
                                 response = self._process_message(data)
                                 data_dict = json.loads(data.decode('utf-8'))
-                                buffered_message = self._process_data(data_dict)
+                                buffered_message = self._process_data(
+                                    data_dict)
                             rclient.close()
                     for wclient in wlist:
                         try:
@@ -86,7 +91,7 @@ class Server(LoggerMixin, ProcessDictMixin):
                                 wclient.send(buffered_message.get_data())
                                 buffered_message = None
                             wclient.close()
-                        except:
+                        except BaseException:
                             self.logger.error(f'Cant write to {wclient}')
                 finally:
                     pass
@@ -103,7 +108,7 @@ class Server(LoggerMixin, ProcessDictMixin):
         response = self._get_response(200)
         if message_type == 'quit':
             self._running = False
-            self.logger.warning(f'Get a "quit" message shutting down')
+            self.logger.warning('Get a "quit" message shutting down')
 
         return response
 

@@ -5,6 +5,7 @@ from threading import Thread
 from .client import Client
 from jimmy.include.mixins.process_data import ProcessDictMixin
 
+
 class ThreadingClient(Client, ProcessDictMixin):
     _logname = 'threading_client'
 
@@ -67,8 +68,8 @@ class ThreadingClient(Client, ProcessDictMixin):
                     'action': 'msg',
                     'message_from': self.account_name,
                     'message_to': self.send_to,
-                    'encoding':  self.encoding,
-                    'message':  message_body,
+                    'encoding': self.encoding,
+                    'message': message_body,
                 }
                 message = self._process_data(message_dict)
                 s.send(message.get_data())

@@ -17,7 +17,8 @@ def log(func):
         stack.reverse()
         parent = stack[1]
 
-        self.logger.debug(f'Call: {func.__name__} from {parent.name}("{parent.filename}:{parent.lineno}")')
+        self.logger.debug(
+            f'Call: {func.__name__} from {parent.name}("{parent.filename}:{parent.lineno}")')
 
         # Restore log level
         logger.setLevel(level)
