@@ -7,4 +7,5 @@ class ClientVerifyMeta(VerifyMeta):
         super().__init__(name, bases, attr_dict)
         for key, attr in attr_dict.items():
             if isinstance(attr, socket):
-                raise ValueError('ERROR: Class level socket definition is forbidden')
+                raise ValueError(
+                    'ERROR: Class level socket definition is forbidden')

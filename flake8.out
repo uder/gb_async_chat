@@ -1,0 +1,143 @@
+./jimmy_client.py:2:1: F401 'jimmy.client.Client' imported but unused
+./jimmy_client.py:9:80: E501 line too long (115 > 79 characters)
+./jimmy_client.py:10:80: E501 line too long (105 > 79 characters)
+./jimmy_client.py:11:80: E501 line too long (117 > 79 characters)
+./jimmy_client.py:12:80: E501 line too long (112 > 79 characters)
+./jimmy_client.py:14:80: E501 line too long (119 > 79 characters)
+./jimmy_client.py:15:80: E501 line too long (114 > 79 characters)
+./jimmy_client.py:17:80: E501 line too long (118 > 79 characters)
+./jimmy_server.py:10:80: E501 line too long (115 > 79 characters)
+./jimmy_server.py:11:80: E501 line too long (105 > 79 characters)
+./jimmy_server.py:12:80: E501 line too long (112 > 79 characters)
+./jimmy_server.py:14:80: E501 line too long (108 > 79 characters)
+./test_jimmy_client.py:2:1: F401 'jimmy.client.Client' imported but unused
+./test_jimmy_client.py:9:80: E501 line too long (115 > 79 characters)
+./test_jimmy_client.py:10:80: E501 line too long (105 > 79 characters)
+./test_jimmy_client.py:11:80: E501 line too long (117 > 79 characters)
+./test_jimmy_client.py:12:80: E501 line too long (112 > 79 characters)
+./test_jimmy_client.py:14:80: E501 line too long (119 > 79 characters)
+./test_jimmy_client.py:15:80: E501 line too long (114 > 79 characters)
+./test_jimmy_client.py:17:80: E501 line too long (118 > 79 characters)
+./test_jimmy_client.py:31:9: F841 local variable 'client' is assigned to but never used
+./db/__init__.py:3:1: F401 'schema.ClientTable' imported but unused
+./db/__init__.py:3:1: F401 'schema.ClientHistoryTable' imported but unused
+./db/__init__.py:3:1: F401 'schema.ContactListTable' imported but unused
+./db/__init__.py:8:33: W292 no newline at end of file
+./db/schema/client.py:18:1: W391 blank line at end of file
+./db/schema/client_history.py:19:1: W391 blank line at end of file
+./db/schema/__init__.py:3:1: F401 'client.ClientTable' imported but unused
+./db/schema/__init__.py:4:1: F401 'client_history.ClientHistoryTable' imported but unused
+./db/schema/__init__.py:5:1: F401 'contact_list.ContactListTable' imported but unused
+./jimmy/client/client.py:8:1: F401 'jimmy.include.decorators.log' imported but unused
+./jimmy/client/client.py:16:5: E301 expected 1 blank line, found 0
+./jimmy/client/client.py:28:80: E501 line too long (95 > 79 characters)
+./jimmy/client/client.py:38:80: E501 line too long (100 > 79 characters)
+./jimmy/client/client.py:41:80: E501 line too long (81 > 79 characters)
+./jimmy/client/receiver_client.py:2:1: F401 'socket.error' imported but unused
+./jimmy/client/receiver_client.py:27:13: F841 local variable 'err' is assigned to but never used
+./jimmy/client/receiver_client.py:32:17: F841 local variable 'err' is assigned to but never used
+./jimmy/client/receiver_client.py:39:1: W391 blank line at end of file
+./jimmy/client/sender_client.py:10:9: F841 local variable 'err' is assigned to but never used
+./jimmy/client/sender_client.py:11:80: E501 line too long (100 > 79 characters)
+./jimmy/client/sender_client.py:13:80: E501 line too long (81 > 79 characters)
+./jimmy/client/threading_client.py:8:1: E302 expected 2 blank lines, found 1
+./jimmy/client/threading_client.py:35:13: F841 local variable 'err' is assigned to but never used
+./jimmy/client/threading_client.py:41:13: F841 local variable 'err' is assigned to but never used
+./jimmy/client/threading_client.py:62:13: F841 local variable 'err' is assigned to but never used
+./jimmy/client/threading_client.py:82:28: W292 no newline at end of file
+./jimmy/client/__init__.py:1:1: F401 'jimmy.client.client.Client' imported but unused
+./jimmy/client/__init__.py:2:1: F401 'jimmy.client.sender_client.SenderClient' imported but unused
+./jimmy/client/__init__.py:3:1: F401 'jimmy.client.receiver_client.ReceiverClient' imported but unused
+./jimmy/client/__init__.py:4:1: F401 'jimmy.client.threading_client.ThreadingClient' imported but unused
+./jimmy/include/logger.py:9:80: E501 line too long (104 > 79 characters)
+./jimmy/include/logger.py:11:80: E501 line too long (91 > 79 characters)
+./jimmy/include/logger.py:23:80: E501 line too long (81 > 79 characters)
+./jimmy/include/logger.py:35:80: E501 line too long (104 > 79 characters)
+./jimmy/include/logger.py:38:80: E501 line too long (90 > 79 characters)
+./jimmy/include/logger.py:44:80: E501 line too long (86 > 79 characters)
+./jimmy/include/logger.py:47:80: E501 line too long (88 > 79 characters)
+./jimmy/include/logger.py:59:80: E501 line too long (112 > 79 characters)
+./jimmy/include/logger.py:73:80: E501 line too long (97 > 79 characters)
+./jimmy/include/logger.py:87:80: E501 line too long (97 > 79 characters)
+./jimmy/include/decorators/log.py:20:80: E501 line too long (107 > 79 characters)
+./jimmy/include/decorators/__init__.py:1:1: F401 '.log.log' imported but unused
+./jimmy/include/descriptors/socket.py:18:9: F901 'raise NotImplemented' should be 'raise NotImplementedError'
+./jimmy/include/verifier/client.py:10:80: E501 line too long (85 > 79 characters)
+./jimmy/include/verifier/client.py:10:86: W292 no newline at end of file
+./jimmy/include/verifier/__init__.py:1:1: F401 'inspect' imported but unused
+./jimmy/include/verifier/__init__.py:4:1: E302 expected 2 blank lines, found 1
+./jimmy/messages/message.py:5:1: E302 expected 2 blank lines, found 1
+./jimmy/messages/message.py:9:80: E501 line too long (80 > 79 characters)
+./jimmy/messages/quit.py:16:1: W391 blank line at end of file
+./jimmy/messages/responses.py:11:80: E501 line too long (86 > 79 characters)
+./jimmy/messages/responses.py:18:5: E301 expected 1 blank line, found 0
+./jimmy/messages/responses.py:28:1: E302 expected 2 blank lines, found 1
+./jimmy/messages/responses.py:62:1: E302 expected 2 blank lines, found 1
+./jimmy/messages/responses.py:72:1: W391 blank line at end of file
+./jimmy/messages/__init__.py:1:1: F401 '.message.Message' imported but unused
+./jimmy/messages/__init__.py:1:1: F401 '.message.MessageFactory' imported but unused
+./jimmy/messages/__init__.py:2:1: F401 '.presence.PresenceMessage' imported but unused
+./jimmy/messages/__init__.py:3:1: F401 '.quit.QuitMessage' imported but unused
+./jimmy/messages/__init__.py:4:1: F401 '.msg.MsgMessage' imported but unused
+./jimmy/messages/__init__.py:5:1: F401 '.not_existent_action.NotExistentActionMessage' imported but unused
+./jimmy/server/server.py:3:1: F401 'socket.error' imported but unused
+./jimmy/server/server.py:5:1: F401 'datetime.datetime' imported but unused
+./jimmy/server/server.py:14:1: E302 expected 2 blank lines, found 1
+./jimmy/server/server.py:29:80: E501 line too long (95 > 79 characters)
+./jimmy/server/server.py:55:13: F841 local variable 'err' is assigned to but never used
+./jimmy/server/server.py:62:80: E501 line too long (87 > 79 characters)
+./jimmy/server/server.py:64:17: F841 local variable 'err' is assigned to but never used
+./jimmy/server/server.py:73:25: E722 do not use bare 'except'
+./jimmy/server/server.py:78:33: F841 local variable 'response' is assigned to but never used
+./jimmy/server/server.py:80:80: E501 line too long (80 > 79 characters)
+./jimmy/server/server.py:89:25: E722 do not use bare 'except'
+./jimmy/server/server.py:106:33: F541 f-string is missing placeholders
+./jimmy/server/testserver.py:2:1: F401 'select.select' imported but unused
+./jimmy/server/testserver.py:4:1: E302 expected 2 blank lines, found 1
+./jimmy/server/testserver.py:19:13: F841 local variable 'wait' is assigned to but never used
+./jimmy/server/testserver.py:20:13: F841 local variable 'client_list' is assigned to but never used
+./jimmy/server/testserver.py:21:13: F841 local variable 'elist' is assigned to but never used
+./jimmy/server/testserver.py:28:13: F841 local variable 'err' is assigned to but never used
+./jimmy/server/testserver.py:35:17: E722 do not use bare 'except'
+./jimmy/server/testserver.py:42:80: E501 line too long (89 > 79 characters)
+./jimmy/server/testserver.py:49:45: W292 no newline at end of file
+./jimmy/server/testserver.py:49:45: W292 no newline at end of file
+./jimmy/server/testserver.py:49:45: W292 no newline at end of file
+./jimmy/server/__init__.py:1:1: F401 '.server.Server' imported but unused
+./lesson1/lesson1_funcs.py:7:1: E302 expected 2 blank lines, found 1
+./lesson1/lesson1_funcs.py:12:1: E302 expected 2 blank lines, found 1
+./lesson1/lesson1_funcs.py:17:13: F841 local variable 'byte_object' is assigned to but never used
+./lesson1/lesson1_funcs.py:18:9: E722 do not use bare 'except'
+./lesson1/lesson1_funcs.py:19:18: E211 whitespace before '('
+./lesson1/lesson1_funcs.py:21:1: E302 expected 2 blank lines, found 1
+./lesson1/lesson1_funcs.py:28:1: E302 expected 2 blank lines, found 1
+./lesson1/lesson1_funcs.py:38:1: E302 expected 2 blank lines, found 1
+./lesson1/lesson1_funcs.py:56:1: E302 expected 2 blank lines, found 1
+./lesson1/lesson1_funcs.py:63:1: E305 expected 2 blank lines after class or function definition, found 1
+./lesson1/lesson1_funcs.py:64:11: W292 no newline at end of file
+./lesson1/lesson1_task6.py:17:1: E305 expected 2 blank lines after class or function definition, found 1
+./lesson1/lesson1_task6.py:20:1: W391 blank line at end of file
+./lesson1/test_lesson1.py:1:1: F401 'pytest' imported but unused
+./lesson1/test_lesson1.py:3:1: F403 'from lesson1_funcs import *' used; unable to detect undefined names
+./lesson1/test_lesson1.py:8:5: F405 'task1' may be undefined, or defined from star imports: lesson1_funcs
+./lesson1/test_lesson1.py:20:5: F405 'task2' may be undefined, or defined from star imports: lesson1_funcs
+./lesson1/test_lesson1.py:31:5: F405 'task3' may be undefined, or defined from star imports: lesson1_funcs
+./lesson1/test_lesson1.py:42:5: F405 'task4' may be undefined, or defined from star imports: lesson1_funcs
+./lesson1/test_lesson1.py:48:80: E501 line too long (83 > 79 characters)
+./lesson1/test_lesson1.py:53:5: F405 'task5' may be undefined, or defined from star imports: lesson1_funcs
+./lesson1/test_lesson1.py:67:27: F541 f-string is missing placeholders
+./lesson1/test_lesson1.py:69:80: E501 line too long (97 > 79 characters)
+./lesson1/test_lesson1.py:92:5: F405 'task6' may be undefined, or defined from star imports: lesson1_funcs
+./lesson9/task1.py:13:9: E722 do not use bare 'except'
+./lesson9/task1.py:17:13: E722 do not use bare 'except'
+./lesson9/task1.py:25:9: E722 do not use bare 'except'
+./lesson9/task1.py:48:1: E402 module level import not at top of file
+./lesson9/task1.py:54:5: E722 do not use bare 'except'
+./tests/test_client.py:22:5: F841 local variable 'args_server' is assigned to but never used
+./tests/test_client.py:37:9: F841 local variable 'err' is assigned to but never used
+./tests/test_client.py:41:80: E501 line too long (88 > 79 characters)
+./tests/test_client.py:64:13: F841 local variable 'err' is assigned to but never used
+./tests/test_messages.py:1:1: F401 'pytest' imported but unused
+./tests/test_messages.py:5:1: F403 'from jimmy.messages.responses import *' used; unable to detect undefined names
+./tests/test_messages.py:23:22: F405 'Response' may be undefined, or defined from star imports: jimmy.messages.responses
+./tests/test_messages.py:26:33: F405 'Response200' may be undefined, or defined from star imports: jimmy.messages.responses

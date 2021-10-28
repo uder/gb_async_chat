@@ -15,4 +15,3 @@ class ClientTable(Base):
 
     def __repr__(self):
         return "<Client('%s','%s')>" % (self.name, self.comment)
-
