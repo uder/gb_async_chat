@@ -12,6 +12,7 @@ from jimmy.include.descriptors.socket import SocketDescriptorServer
 
 
 class Server(LoggerMixin, ProcessDictMixin):
+    """Main server implementation"""
     _logname = 'server'
     socket = SocketDescriptorServer('socket')
 
@@ -33,6 +34,7 @@ class Server(LoggerMixin, ProcessDictMixin):
             self.loglevel)
 
     def start(self):
+        """Entrypoint. Start your server with start()"""
         self.logger.info(f'Listening on {self.addr}:{self.port}')
         self.socket.bind((self.addr, self.port))
         self.socket.listen(self.max_client)
@@ -41,6 +43,7 @@ class Server(LoggerMixin, ProcessDictMixin):
         self._run()
 
     def _run(self):
+        """Invisible doc. Main thread"""
         buffered_message = ResponseFactory.create_by_code(299)
         # counter = 0
         while self._running:

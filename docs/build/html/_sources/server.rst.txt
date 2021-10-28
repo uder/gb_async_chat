@@ -1,0 +1,4 @@
+.. automodule:: jimmy.server
+
+.. autoclass:: jimmy.server.Server
+    :members:

@@ -1,0 +1,4 @@
+.. automodule:: jimmy.client
+
+.. autoclass:: jimmy.client.ThreadingClient
+    :members:
